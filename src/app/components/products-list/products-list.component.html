@@ -1,0 +1,16 @@
+<h2>products list page</h2>
+
+<div class="container">
+  <div class="card" style="width: 40rem;"
+    *ngFor="let product of productsList">
+
+    <img alt="" class="card-img-top" src="assets/images/default.jpeg">
+    <div class="card-body">
+      <h5 class="card-title"> <strong>name: </strong> {{product.name}}</h5>
+      <p class="card-text"> <strong>description: </strong> {{product.description}}</p>
+      <p class="card-text"> <strong>price: </strong> {{product.unitPrice}}</p>
+      <p class="card-text"> <strong>units in stock: </strong> {{product.unitsInStock}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
