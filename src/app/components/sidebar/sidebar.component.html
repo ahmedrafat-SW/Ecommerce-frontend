@@ -1,0 +1,29 @@
+<div class="sidebar bg-light border-end vh-100">
+  <h5 class="p-3 border-bottom fw-bold">Categories</h5>
+  <button
+    class="btn btn-link position-absolute top-0 end-0 m-2 text-dark"
+    (click)="closeSidebar()"
+    aria-label="Close"
+  >
+    <i class="bi bi-x-lg"></i>
+  </button>
+  <ul class="list-unstyled p-2">
+    <!-- Main Categories -->
+    <li *ngFor="let category of categories" class="mb-2">
+      <div
+        class="d-flex justify-content-between align-items-center p-2 category-title"
+        (click)="toggleCategory(category.categoryName)"
+        style="cursor: pointer;"
+      >
+        <span>{{ category.categoryName }}</span>
+        <i
+          class="bi"
+          [ngClass]="{
+            'bi-chevron-down': openCategories[category.categoryName],
+            'bi-chevron-right': !openCategories[category.categoryName]
+          }"
+        ></i>
+      </div>
+    </li>
+  </ul>
+</div>

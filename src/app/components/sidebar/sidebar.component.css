@@ -1,0 +1,21 @@
+app-sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+app-sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+
+
+.category-title:hover {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+.bi-chevron-down,
+.bi-chevron-right {
+  font-size: 12px;
+}
+
+
