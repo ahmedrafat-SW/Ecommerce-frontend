@@ -1,0 +1,112 @@
+<div class="container mt-4">
+    <div class="row">
+        <!-- Product Image Section -->
+        <div class="col-lg-6">
+            <div class="product-image-container text-center">
+                <img
+                        [src]="product.imageUrl || 'assets/images/default-4.avif'"
+                        [alt]="product.name"
+                        class="img-fluid main-product-image"
+                />
+                <div class="thumbnail-images d-flex justify-content-center mt-3">
+                    <img
+                            *ngFor="let img of product.additionalImages"
+                            [src]="img"
+                            alt="Thumbnail"
+                            class="img-thumbnail mx-1"
+                            style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;"
+                            (click)="updateMainImage(img)"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="col-lg-6">
+            <h1 class="product-title">{{ product.name }}</h1>
+            <p class="product-price text-success fw-bold fs-4">
+                {{ product.unitPrice | currency }}
+            </p>
+            <p class="product-description text-muted">{{ product.description }}</p>
+
+            <ul class="product-highlights list-unstyled my-3">
+                <li *ngFor="let feature of product.features" class="mb-2">
+                    <i class="bi bi-check-circle text-success me-2"></i>{{ feature }}
+                </li>
+            </ul>
+
+            <!-- Add to Cart and Buy Now Buttons -->
+            <div class="action-buttons mt-4">
+                <button class="btn btn-warning rounded-4 me-3">Add to Cart</button>
+                <button class="btn btn-dark rounded-4">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Reviews Section -->
+    <div class="product-reviews mt-5">
+        <h3>Customer Reviews</h3>
+        <div *ngFor="let review of product.reviews" class="review-card my-3 p-3 border rounded">
+            <h5>{{ review.reviewerName }}</h5>
+            <p class="text-muted">{{ review.date }}</p>
+            <p>{{ review.comment }}</p>
+            <p class="rating">
+                <i *ngFor="let star of [].constructor(review.rating)" class="bi bi-star-fill text-warning"></i>
+            </p>
+        </div>
+    </div>
+
+    <!-- Add Review Form -->
+    <div class="add-review-section mt-5">
+        <h3>Leave a Review</h3>
+        <form (ngSubmit)="submitReview()" #reviewForm="ngForm" class="mt-3">
+            <!-- Name Field -->
+            <div class="mb-3">
+                <label for="reviewerName" class="form-label">Your Name</label>
+                <input
+                        type="text"
+                        id="reviewerName"
+                        class="form-control"
+                        [(ngModel)]="newReview.reviewerName"
+                        name="reviewerName"
+                        required
+                />
+            </div>
+
+            <!-- Rating Field -->
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <select
+                        id="rating"
+                        class="form-select"
+                        [(ngModel)]="newReview.rating"
+                        name="rating"
+                        required
+                >
+                    <option value="" disabled>Select Rating</option>
+                    <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">
+                        {{ star }} Star{{ star > 1 ? 's' : '' }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- Comment Field -->
+            <div class="mb-3">
+                <label for="comment" class="form-label">Your Review</label>
+                <textarea
+                        id="comment"
+                        class="form-control"
+                        rows="4"
+                        [(ngModel)]="newReview.comment"
+                        name="comment"
+                        required
+                ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-dark rounded-4" [disabled]="!reviewForm.valid">
+                Submit Review
+            </button>
+        </form>
+    </div>
+</div>

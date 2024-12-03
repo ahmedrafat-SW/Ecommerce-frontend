@@ -1,0 +1,60 @@
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 1.5rem;
+}
+
+.product-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.product-highlights li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.main-product-image {
+  max-height: 400px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.thumbnail-images img:hover {
+  border: 2px solid #ffc107;
+}
+
+.action-buttons .btn {
+  width: 150px;
+}
+
+.review-card {
+  background-color: #f8f9fa;
+}
+
+.rating i {
+  font-size: 1rem;
+}
+
+.add-review-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-review-section h3 {
+  margin-bottom: 20px;
+}
+
+.review-card {
+  background-color: #f8f9fa;
+}
+
+.rating i {
+  font-size: 1rem;
+}
