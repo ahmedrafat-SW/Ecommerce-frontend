@@ -5,3 +5,8 @@ export const productUrls = {
   list : serviceUrl + "products",
   get : serviceUrl + ""
 }
+
+export const productCategoryUrls = {
+  list : serviceUrl + "product-category",
+  get : serviceUrl + "",
+}
