@@ -1,0 +1,16 @@
+footer h5 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+footer ul {
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
