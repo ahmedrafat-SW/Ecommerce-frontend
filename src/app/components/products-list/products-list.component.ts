@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../common/product';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
@@ -10,14 +12,30 @@ import {Product} from '../../common/product';
 export class ProductsListComponent implements OnInit{
 
   productsList: Product[] = [];
+  page: number = 1;
+  cartCount = 0;
 
-  constructor(private productService: ProductService) {}
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.productService.getProductsList()
-      .subscribe(result => {
-        this.productsList = result._embedded.products;
-      } );
+    this.listProducts();
   }
 
+  listProducts() {
+    this.productService.getProductsList()
+      .subscribe(
+        products => {
+          this.productsList = products;
+      }
+      );
+  }
+
+  addToCart(product: Product) {
+    this.cartCount +=1;
+    this.productService.setAddToCart(this.cartCount);
+  }
 }

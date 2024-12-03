@@ -1,16 +1,77 @@
-<h2>products list page</h2>
-
 <div class="container">
-  <div class="card" style="width: 40rem;"
-    *ngFor="let product of productsList">
+  <div class="mt-4">
+    <div class="row">
+      <!-- Loop through the products array -->
+      <div
+        class="col-xl-3 col-md-4 col-sm-6 mb-4"
+        *ngFor="let product of productsList | paginate: { itemsPerPage: 8, currentPage: page }"
+        aria-label="Product Card"
+      >
+        <div class="card h-100 shadow-sm">
+          <!-- Product Image -->
+          <img
+            [routerLink]="['/view', product.id]"
+            src="assets/images/default-4.avif"
+            [alt]="product.name"
+            class="card-img-top"
+            style="height: 200px; object-fit: cover;"
+          />
 
-    <img alt="" class="card-img-top" src="assets/images/default.jpeg">
-    <div class="card-body">
-      <h5 class="card-title"> <strong>name: </strong> {{product.name}}</h5>
-      <p class="card-text"> <strong>description: </strong> {{product.description}}</p>
-      <p class="card-text"> <strong>price: </strong> {{product.unitPrice}}</p>
-      <p class="card-text"> <strong>units in stock: </strong> {{product.unitsInStock}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body d-flex flex-column">
+            <!-- Product Name -->
+            <h5
+              [routerLink]="['/view', product.id]"
+              class="card-title text-truncate"
+              [title]="product.name"
+            >
+              {{ product.name }}
+            </h5>
+
+            <!-- Product Price -->
+            <p
+              [routerLink]="['/view', product.id]"
+              class="text-success fw-bold">
+              {{ product.unitPrice.toFixed(2) | currency }}
+            </p>
+
+            <!-- Units in Stock -->
+            <p
+              [routerLink]="['/view', product.id]"
+               class="text-muted">
+              <span *ngIf="product.unitsInStock > 0">
+                Units in stock: {{ product.unitsInStock }}
+              </span>
+              <span *ngIf="product.unitsInStock === 0" class="text-danger">
+                Out of stock
+              </span>
+            </p>
+
+            <!-- Product Description -->
+            <p [routerLink]="['/view', product.id]"
+              class="card-text text-truncate"
+              [title]="product.description"
+            >
+              {{ product.description }}
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="mt-auto">
+              <button
+                (click)="addToCart(product)"
+                class="btn btn-warning rounded-5 px-md-3 me-3"
+                [disabled]="product.unitsInStock === 0"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination controls -->
+    <div class="pagination-wrapper mt-4 text-center">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 </div>
