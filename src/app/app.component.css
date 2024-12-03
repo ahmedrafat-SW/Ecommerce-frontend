@@ -1,0 +1,36 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Sidebar overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px; /* Width of the sidebar */
+  z-index: 1050;
+  background: #fff; /* Sidebar background */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Backdrop for overlay effect */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*width: 100vw;*/
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  z-index: 1049; /* Behind sidebar */
+}
+
+/* Content area */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}

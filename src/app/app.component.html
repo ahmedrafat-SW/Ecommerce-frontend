@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<app-header (sidebarToggleEmitter)="showHideSidebar($event)"></app-header>
+<div class="main-layout">
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" *ngIf="showSidebar">
+    <app-sidebar (closeSidebarEvent)="closeSidebar()"></app-sidebar>
+    <div class="backdrop" (click)="closeSidebar()"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>

@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ecommerce-angular';
+
+  showSidebar = false;
+
+  showHideSidebar(event: boolean) {
+    this.showSidebar = event;
+  }
+
+  closeSidebar() {
+    this.showSidebar = false;
+  }
+
 }
