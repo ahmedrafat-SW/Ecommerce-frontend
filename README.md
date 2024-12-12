@@ -3,7 +3,7 @@
 ## Backend Repo: https://github.com/ahmedrafat-SW/Ecommerce-backend
 
 ## Home Page
-![Screenshot from 2024-12-12 23-08-38](https://github.com/user-attachments/assets/484cd2ff-6ac0-4633-82e7-987b62045161)
+![Screenshot from 2024-12-13 00-10-02](https://github.com/user-attachments/assets/4ae0d657-e032-417e-a9ba-8d20f7f4d05f)
 ## View Product
 ![Screenshot from 2024-12-12 23-09-07](https://github.com/user-attachments/assets/23cfba42-28e7-49de-bf27-3bb9d5fbad79)
 ## Cart
