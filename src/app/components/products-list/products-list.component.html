@@ -4,14 +4,14 @@
       <!-- Loop through the products array -->
       <div
         class="col-xl-3 col-md-4 col-sm-6 mb-4"
-        *ngFor="let product of productsList | paginate: { itemsPerPage: 8, currentPage: page }"
+        *ngFor="let product of productsList | paginate: {itemsPerPage: pageSize, currentPage: page}"
         aria-label="Product Card"
       >
         <div class="card h-100 shadow-sm">
           <!-- Product Image -->
           <img
             [routerLink]="['/view', product.id]"
-            src="assets/images/default-4.avif"
+            src="{{product.imageUrl || 'assets/images/default-2.png'}}"
             [alt]="product.name"
             class="card-img-top"
             style="height: 200px; object-fit: cover;"
@@ -71,7 +71,9 @@
 
     <!-- Pagination controls -->
     <div class="pagination-wrapper mt-4 text-center">
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls
+        (pageChange)="changePage($event)"
+      ></pagination-controls>
     </div>
   </div>
 </div>

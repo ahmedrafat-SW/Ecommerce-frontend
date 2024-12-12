@@ -14,9 +14,9 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductsList(): Observable<Product[]> {
-    return this.httpClient.get<GetResponse>(productUrls.list)
-      .pipe(map( response => response._embedded.products));
+  getProductsList(page?: number, pageSize?: number): Observable<any> {
+    return this.httpClient.get<any>(productUrls.list + `?page=${page}&size=${pageSize}`)
+      // .pipe(map( response => response._embedded.products));
   }
 
   setAddToCart(data : number){

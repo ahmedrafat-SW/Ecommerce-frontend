@@ -39,7 +39,7 @@ export class AppHeaderComponent implements OnInit{
         .subscribe(
             (data) => {
               if (data) {
-                this.cartCount += data;
+                // this.cartCount = data;
               }
             }
         )

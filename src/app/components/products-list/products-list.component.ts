@@ -13,6 +13,8 @@ export class ProductsListComponent implements OnInit{
 
   productsList: Product[] = [];
   page: number = 1;
+  pageSize = 10;
+  totalItems = 10;
   cartCount = 0;
 
 
@@ -22,14 +24,16 @@ export class ProductsListComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.listProducts();
+    this.listProducts(this.page, this.pageSize);
   }
 
-  listProducts() {
-    this.productService.getProductsList()
+  listProducts(page?: number, pageSize?: number) {
+    this.productService.getProductsList(page, pageSize)
       .subscribe(
-        products => {
-          this.productsList = products;
+        response => {
+          this.productsList = response._embedded.products;
+          // this.totalItems = response.page.totalPages;
+          console.log('total items', this.totalItems)
       }
       );
   }
@@ -37,5 +41,10 @@ export class ProductsListComponent implements OnInit{
   addToCart(product: Product) {
     this.cartCount +=1;
     this.productService.setAddToCart(this.cartCount);
+  }
+
+  changePage(page: number) {
+    this.page = page;
+    this.listProducts(this.page, this.pageSize)
   }
 }
