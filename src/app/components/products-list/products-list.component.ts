@@ -31,9 +31,16 @@ export class ProductsListComponent implements OnInit{
     this.productService.getProductsList(page, pageSize)
       .subscribe(
         response => {
-          this.productsList = response._embedded.products;
+          // this.productsList = response._embedded.products;
           // this.totalItems = response.page.totalPages;
-          console.log('total items', this.totalItems)
+          // console.log('total items', this.totalItems)
+          // @ts-ignore
+          response._embedded.products.forEach(product =>  {
+            const href = product._links.product.href;
+            const productId = href.match(/(\d+)(?!.*\d)/); // Matches the last number in the string
+            product.id  = parseInt(productId[0], 10);
+            this.productsList.push(product)
+          })
       }
       );
   }

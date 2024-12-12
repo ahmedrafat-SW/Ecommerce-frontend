@@ -26,6 +26,10 @@ export class ProductService {
   getAddToCart() {
     return this.addToCartEvent.asObservable();
   }
+
+  getProduct(productId: number): Observable<any> {
+    return this.httpClient.get(productUrls.get + productId);
+  }
 }
 
 interface GetResponse{

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-view-product',
@@ -9,50 +10,22 @@ import {ActivatedRoute} from '@angular/router';
 export class ViewProductComponent implements OnInit{
 
   productId: any;
+  product: any = {};
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productService: ProductService
   ) {}
 
 
   ngOnInit() {
     this.route.paramMap.subscribe(param => {
-      this.productId = param.get('id') || null;
+      this.productId = param.get('id');
+      this.getProductBy(this.productId)
     });
 
     console.log(this.productId);
   }
-
-  product = {
-    name: 'Google Chromecast 3rd Generation',
-    unitPrice: 49.99,
-    description: 'Stream content from your device to your TV seamlessly.',
-    imageUrl: 'assets/images/default-4.avif',
-    additionalImages: [
-      'assets/images/image1.avif',
-      'assets/images/image2.avif',
-      'assets/images/image3.avif'
-    ],
-    features: [
-      'Stream from your phone, tablet, or laptop',
-      'High-speed Wi-Fi',
-      'Supports Full HD resolution'
-    ],
-    reviews: [
-      {
-        reviewerName: 'John Doe',
-        date: '2024-11-29',
-        comment: 'Amazing product! Highly recommend.',
-        rating: 5
-      },
-      {
-        reviewerName: 'Jane Smith',
-        date: '2024-11-28',
-        comment: 'Works great with my TV.',
-        rating: 4
-      }
-    ]
-  };
 
   updateMainImage(imageUrl: string) {
     this.product.imageUrl = imageUrl;
@@ -86,5 +59,12 @@ export class ViewProductComponent implements OnInit{
     };
 
     alert('Thank you for your review!');
+  }
+
+  getProductBy(productId: number) {
+    this.productService.getProduct(productId)
+      .subscribe(response => {
+        this.product = response;
+      })
   }
 }
