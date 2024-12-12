@@ -3,30 +3,6 @@
 ## Backend Repo: https://github.com/ahmedrafat-SW/Ecommerce-backend
 
 ## Home Page
-![Screenshot from 2024-11-30 15-39-02](https://github.com/user-attachments/assets/d956b6ea-c406-43c5-8f8c-22b7741d1dc6)
-
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Screenshot from 2024-12-12 23-08-38](https://github.com/user-attachments/assets/484cd2ff-6ac0-4633-82e7-987b62045161)
+## View Product
+![Screenshot from 2024-12-12 23-09-07](https://github.com/user-attachments/assets/23cfba42-28e7-49de-bf27-3bb9d5fbad79)
