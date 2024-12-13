@@ -12,6 +12,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ShippingComponent } from './components/shipping/shipping.component';
+import { ProfileComponent } from './components/account/profile.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppHeaderComponent,
     FooterComponent,
     SidebarComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    CheckoutComponent,
+    ShippingComponent,
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +41,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NgOptimizedImage,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

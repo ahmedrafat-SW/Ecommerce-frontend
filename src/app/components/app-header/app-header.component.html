@@ -17,25 +17,35 @@
             placeholder="Search products..."
             aria-label="Search">
           <button class="btn btn-warning" type="submit">
-            <i class="bi bi-search"></i>
+            <i class="fas fa-search"></i>
           </button>
         </div>
       </form>
       <div class="d-flex align-items-center flex-wrap">
         <!-- For Large Screens -->
         <div class="d-none d-lg-flex">
-          <a class="nav-link text-light me-3 d-flex align-items-center" href="#">
-            <i class="bi bi-person-circle me-1"></i> Account
+          <!-- Account Link -->
+          <a class="nav-link text-light me-3 d-flex align-items-center" [routerLink]="['/profile']">
+            <i class="fas fa-user me-2"></i> <span class="mx-2">Account</span>
           </a>
-          <a class="nav-link text-light me-3 d-flex align-items-center" href="#">
-            <i class="bi bi-box me-1"></i> Orders
+
+          <!-- Cart Link -->
+          <a class="nav-link text-light me-3 d-flex align-items-center" [routerLink]="['/checkout']">
+            <i class="fas fa-shopping-cart me-2"></i> Cart <span class="px-2 fa-bold">({{cartCount}})</span>
           </a>
-          <a class="nav-link text-light d-flex align-items-center" href="#">
-            <i class="bi bi-cart4 me-1"></i> Cart
+
+          <!-- Sign In Link -->
+          <a class="nav-link text-light me-3 d-flex align-items-center" [routerLink]="['/login']">
+            <i class="fas fa-sign-in-alt me-2"></i> Sign In
+          </a>
+
+          <!-- Sign Up Link -->
+          <a class="nav-link text-light d-flex align-items-center" [routerLink]="['/register']">
+            <i class="fas fa-user-plus me-2"></i> Sign Up
           </a>
         </div>
 
-        <!-- For Small Screens -->
+      <!-- For Small Screens -->
         <div class="dropdown d-lg-none">
           <button class="btn btn-dark text-light dropdown-toggle" type="button" id="smallScreenMenu" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-list"></i> <!-- Only the hamburger icon -->
@@ -68,8 +78,10 @@
       <a (click)="sidebarToggle()"  class="text-light text-decoration-none me-3" href="#">
         <i class="bi bi-list"></i>All
       </a>
-      <a class="text-light text-decoration-none me-3" href="#"
-        *ngFor="let category of categories let i = index" >{{category.categoryName}}</a>
+      <a class="text-light text-decoration-none me-3" [routerLink]="['/category', category.id]"
+        *ngFor="let category of categories let i = index"
+      (click)="getCategoryProducts(category)"
+      >{{category.categoryName}}</a>
     </div>
   </div>
 </header>
