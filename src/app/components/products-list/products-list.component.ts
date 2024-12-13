@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../common/product';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subject} from 'rxjs';
 import {PageEvent} from '@angular/material/paginator';
 import {ProductCategoryService} from '../../services/product-category.service';
 import {CheckoutService} from '../../services/checkout.service';
+import {UtilService} from '../../services/util.service';
+import {NOTIFICATION} from '../../config/AppConfig';
 
 @Component({
   selector: 'app-products-list',
@@ -26,10 +26,31 @@ export class ProductsListComponent implements OnInit{
     private productService: ProductService,
     private categoryService: ProductCategoryService,
     private checkoutService: CheckoutService,
-    private router: Router,
+    private util: UtilService,
   ) {}
 
   ngOnInit(): void {
+
+    this.productService.getSearchWord()
+      .subscribe(keyword => {
+        if (keyword){
+          this.loading = true;
+          this.productsList = [];
+          this.productService.search(keyword)
+            .subscribe(response => {
+              // @ts-ignore
+              response._embedded.products.forEach(product =>  {
+                product.id = this.productService.getId(product)
+                this.productsList.push(product)
+              });
+
+              this.loading = false;
+            });
+        } else if (keyword == ""){
+          this.listProducts(this.page, this.pageSize)
+        }
+      })
+
     this.categoryService.getCurrentCategory()
       .subscribe(category => {
         if (category){
@@ -73,6 +94,7 @@ export class ProductsListComponent implements OnInit{
 
   addToCart(product: Product) {
     this.checkoutService.addNewItemToCart(product);
+    this.util.notify(NOTIFICATION.SUCCESS, `Successfully added ${product.name} to Cart`, "Cart")
   }
 
   changePage(page: number) {

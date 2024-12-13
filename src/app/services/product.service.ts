@@ -9,6 +9,8 @@ import {Product} from '../common/product';
 })
 export class ProductService {
 
+  searchSubject = new BehaviorSubject<any>(null)
+
   constructor(private httpClient: HttpClient) { }
 
   getId(product: any){
@@ -25,6 +27,18 @@ export class ProductService {
 
   getProduct(productId: number): Observable<any> {
     return this.httpClient.get(productUrls.get + productId);
+  }
+
+  search(searchWord: string): Observable<any>{
+    return this.httpClient.get(productUrls.search + `?searchWord=${searchWord}`);
+  }
+
+  setSearchWord(searchWord: string){
+    this.searchSubject.next(searchWord);
+  }
+
+  getSearchWord(){
+    return this.searchSubject.asObservable();
   }
 }
 

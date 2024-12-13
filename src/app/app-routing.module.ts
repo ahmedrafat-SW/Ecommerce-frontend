@@ -10,8 +10,13 @@ import {RegisterComponent} from './components/register/register.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "products",
     component: ProductsListComponent
+  },
+  {
+    path: "",
+    redirectTo: "/products",
+    pathMatch: "full"
   },
   {
     path: "category/:id",
@@ -40,6 +45,11 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent
+  },
+  {
+    path: "**",
+    redirectTo: "/products",
+    pathMatch: "full"
   }
 ];
 

@@ -34,4 +34,12 @@ export class CheckoutComponent implements OnInit{
       item.quantity -= 1;
     }
   }
+
+  delete(item: CartItem) {
+
+    const index = this.cartItems.indexOf(item);
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+    }
+  }
 }

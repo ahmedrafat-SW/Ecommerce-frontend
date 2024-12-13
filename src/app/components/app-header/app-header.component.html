@@ -9,14 +9,15 @@
           </span>
       </div>
       </a>
-      <form class="d-flex mx-auto w-50 align-items-center">
+      <form [formGroup]="searchForm" (ngSubmit)="search()" class="d-flex mx-auto w-50 align-items-center">
         <div class="input-group">
           <input
+            formControlName="searchWord"
             class="form-control"
             type="search"
             placeholder="Search products..."
             aria-label="Search">
-          <button class="btn btn-warning" type="submit">
+          <button class="btn btn-warning"  type="submit">
             <i class="fas fa-search"></i>
           </button>
         </div>

@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../common/product';
 import {CheckoutService} from '../../services/checkout.service';
+import {NOTIFICATION} from '../../config/AppConfig';
+import {UtilService} from '../../services/util.service';
 
 @Component({
   selector: 'app-view-product',
@@ -17,7 +19,8 @@ export class ViewProductComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private util: UtilService
   ) {}
 
 
@@ -77,5 +80,6 @@ export class ViewProductComponent implements OnInit{
 
   addToCart(product: Product) {
     this.checkoutService.addNewItemToCart(product);
+    this.util.notify(NOTIFICATION.SUCCESS, `Successfully added ${product.name} to Cart`, "Cart")
   }
 }
