@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {ProductCategoryService} from '../../services/product-category.service';
 import {ProductCategory} from '../../common/ProductCategory';
 
@@ -7,27 +7,28 @@ import {ProductCategory} from '../../common/ProductCategory';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit, OnDestroy{
   showSidebar = true;
   categories: ProductCategory[] = [];
   @Output() closeSidebarEvent = new EventEmitter<boolean>();
 
   openCategories: { [key: string]: boolean } = {};
 
-  constructor(private productCategoryService: ProductCategoryService) {}
+  constructor(private categoryService: ProductCategoryService) {}
 
   ngOnInit() {
-    this.productCategoryService.getProductCategories()
-      .subscribe(
-        data => {
-          this.categories = data;
+    this.categoryService.getCategories()
+      .subscribe( data => {
+          data.forEach(category => {
+            category.id = this.categoryService.getId(category)
+            this.categories.push(category);
+          })
         }
       )
   }
 
-  // Toggles the visibility of subcategories
-  toggleCategory(categoryName: string): void {
-    this.openCategories[categoryName] = !this.openCategories[categoryName];
+  getCategoryItems(category: any): void {
+    this.categoryService.setCurrentCategory(this.categoryService.getId(category));
   }
 
   closeSidebar() {
@@ -35,4 +36,7 @@ export class SidebarComponent implements OnInit{
     this.closeSidebarEvent.emit(this.showSidebar)
   }
 
+  ngOnDestroy() {
+
+  }
 }

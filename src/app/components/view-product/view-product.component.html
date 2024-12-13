@@ -1,5 +1,10 @@
-<div class="container mt-4">
-    <div class="row">
+<div *ngIf="loading" class="text-center">
+  <i class="fas fa-spinner fa-spin"></i> Loading...
+</div>
+
+<div *ngIf="!loading" class="container mt-4">
+
+  <div class="row">
         <!-- Product Image Section -->
         <div class="col-lg-6">
             <div class="product-image-container text-center">
@@ -37,8 +42,8 @@
 
             <!-- Add to Cart and Buy Now Buttons -->
             <div class="action-buttons mt-4">
-                <button class="btn btn-warning rounded-4 me-3">Add to Cart</button>
-                <button class="btn btn-dark rounded-4">Buy Now</button>
+                <button class="btn btn-warning rounded-4 me-3" (click)="addToCart(product)">Add to Cart</button>
+                <button class="btn btn-dark rounded-4" [routerLink]="['/checkout']">Buy Now</button>
             </div>
         </div>
     </div>

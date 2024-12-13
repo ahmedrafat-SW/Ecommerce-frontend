@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../services/product.service';
+import {Product} from '../../common/product';
+import {CheckoutService} from '../../services/checkout.service';
 
 @Component({
   selector: 'app-view-product',
@@ -14,7 +16,8 @@ export class ViewProductComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private checkoutService: CheckoutService
   ) {}
 
 
@@ -36,6 +39,7 @@ export class ViewProductComponent implements OnInit{
     rating: null,
     comment: ''
   };
+  loading = false;
 
   submitReview() {
     // Add the current date to the new review
@@ -62,9 +66,16 @@ export class ViewProductComponent implements OnInit{
   }
 
   getProductBy(productId: number) {
+    this.loading = true;
     this.productService.getProduct(productId)
       .subscribe(response => {
         this.product = response;
+        this.product.reviews = [];
       })
+    this.loading = false;
+  }
+
+  addToCart(product: Product) {
+    this.checkoutService.addNewItemToCart(product);
   }
 }
