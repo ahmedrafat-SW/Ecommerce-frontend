@@ -1,0 +1,155 @@
+<div class="container my-5">
+  <h2 class="mb-4">Checkout</h2>
+  <form (ngSubmit)="submitForm()">
+    <!-- Shipping Details -->
+    <div class="mb-4">
+      <h3><i class="fas fa-map-marker-alt"></i> Shipping Address</h3>
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullName"
+          [(ngModel)]="checkoutDetails.fullName"
+          name="fullName"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+      <!-- Address -->
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          [(ngModel)]="checkoutDetails.address"
+          name="address"
+          placeholder="Enter your address"
+          required
+        />
+      </div>
+      <!-- City -->
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          [(ngModel)]="checkoutDetails.city"
+          name="city"
+          placeholder="Enter your city"
+          required
+        />
+      </div>
+      <!-- State and ZIP Code -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="state" class="form-label">State</label>
+          <input
+            type="text"
+            class="form-control"
+            id="state"
+            [(ngModel)]="checkoutDetails.state"
+            name="state"
+            placeholder="Enter your state"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="zip" class="form-label"><i class="fas fa-map-pin"></i> ZIP Code</label>
+          <input
+            type="text"
+            class="form-control"
+            id="zip"
+            [(ngModel)]="checkoutDetails.zip"
+            name="zip"
+            placeholder="Enter your ZIP code"
+            required
+          />
+        </div>
+      </div>
+      <!-- Country -->
+      <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <select
+          class="form-select"
+          id="country"
+          [(ngModel)]="checkoutDetails.country"
+          name="country"
+          required
+        >
+          <option selected disabled>Choose...</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Australia</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="mb-4">
+      <h3> <i class="fas fa-wallet"></i> Payment Details</h3>
+      <!-- Cardholder Name -->
+      <div class="mb-3">
+        <label for="cardName" class="form-label"> <i class="fas fa-credit-card"></i> Cardholder Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cardName"
+          [(ngModel)]="checkoutDetails.cardName"
+          name="cardName"
+          placeholder="Enter cardholder name"
+          required
+        />
+      </div>
+      <!-- Card Number -->
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Card Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cardNumber"
+          [(ngModel)]="checkoutDetails.cardNumber"
+          name="cardNumber"
+          placeholder="1234 5678 9012 3456"
+          maxlength="19"
+          required
+        />
+      </div>
+      <!-- Expiry Date and CVV -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="expiryDate" class="form-label"> <i class="far fa-calendar-alt"></i> Expiry Date</label>
+          <input
+            type="month"
+            class="form-control"
+            id="expiryDate"
+            [(ngModel)]="checkoutDetails.expiryDate"
+            name="expiryDate"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cvv" class="form-label"><i class="fas fa-lock"></i> CVV</label>
+          <input
+            type="password"
+            class="form-control"
+            id="cvv"
+            [(ngModel)]="checkoutDetails.cvv"
+            name="cvv"
+            maxlength="3"
+            required
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-dark rounded-4">
+      <i class="fas fa-check-circle"></i> Place Order
+    </button>
+  </form>
+</div>
