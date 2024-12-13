@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, map, Observable, Subject} from 'rxjs';
 import {productUrls} from '../config/apiUrls';
 import {Product} from '../common/product';
 
@@ -9,23 +9,19 @@ import {Product} from '../common/product';
 })
 export class ProductService {
 
-  addToCartEvent  = new Subject();
-
-
   constructor(private httpClient: HttpClient) { }
+
+  getId(product: any){
+    const href = product._links.product.href;
+    const productId = href.match(/(\d+)(?!.*\d)/); // Matches the last number in the string
+    return parseInt(productId[0], 10);
+  }
 
   getProductsList(page?: number, pageSize?: number): Observable<any> {
     return this.httpClient.get<any>(productUrls.list + `?page=${page}&size=${pageSize}`)
       // .pipe(map( response => response._embedded.products));
   }
 
-  setAddToCart(data : number){
-    this.addToCartEvent.next(data)
-  }
-
-  getAddToCart() {
-    return this.addToCartEvent.asObservable();
-  }
 
   getProduct(productId: number): Observable<any> {
     return this.httpClient.get(productUrls.get + productId);

@@ -85,3 +85,7 @@
 .add-to-cart button:hover {
   background: #ddb347;
 }
+
+.paginator {
+  width: 600px;
+}
