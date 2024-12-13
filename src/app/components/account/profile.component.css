@@ -1,0 +1,8 @@
+/* account.component.css */
+.container {
+  max-width: 600px;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+}

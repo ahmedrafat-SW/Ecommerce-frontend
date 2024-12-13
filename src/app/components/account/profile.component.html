@@ -1,0 +1,70 @@
+<div class="container my-5">
+  <h2 class="mb-4">Profile Information</h2>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="text-center">
+    <i class="fas fa-spinner fa-spin"></i> Loading...
+  </div>
+
+  <!-- Account Update Form -->
+  <div *ngIf="!loading">
+    <form #accountForm="ngForm" (ngSubmit)="updateAccount(accountForm)">
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          [(ngModel)]="account.firstName"
+          name="firstName"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          [(ngModel)]="account.lastName"
+          name="lastName"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="account.email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          [(ngModel)]="account.password"
+          name="password"
+          required
+        />
+      </div>
+
+      <!-- Success or Error Messages -->
+      <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-dark px-5 rounded-4" [disabled]="!accountForm.form.valid">
+         Save
+      </button>
+    </form>
+  </div>
+</div>
