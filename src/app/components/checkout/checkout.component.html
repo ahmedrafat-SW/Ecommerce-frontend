@@ -1,0 +1,55 @@
+<div class="container my-5">
+  <div class="row">
+    <!-- Left Section: Cart Items -->
+    <div class="col-md-8">
+      <h2 class="mb-4">Your Cart</h2>
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{item.product.imageUrl}}" class="img-fluid rounded-start" alt="{{ item.product.name }}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product.name }}</h5>
+              <p class="card-text text-muted">{{ item.product.description }}</p>
+              <p class="card-text">
+                <strong>Price:</strong> ${{ item.product.unitPrice }}
+              </p>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-sm me-2" (click)="decreaseQuantity(item)">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span>{{item.quantity}}</span>
+                <button class="btn btn-outline-secondary btn-sm ms-2" (click)="increaseQuantity(item)">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section: Order Summary -->
+    <div class="col-md-4">
+      <h2 class="mb-4">Order Summary</h2>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Subtotal</span>
+          <strong>${{ calculateSubtotal() }}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Shipping</span>
+          <strong>$5.00</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total</span>
+          <strong>${{ calculateSubtotal() + 5 }}</strong>
+        </li>
+      </ul>
+      <button class="btn btn-dark rounded-4" [routerLink]="['/ship']">
+        <i class="fas fa-shopping-cart"></i> Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>
